@@ -1,0 +1,41 @@
+{
+  "id": "loki-plugin",
+  "name": "Loki",
+  "type": "observability",
+  "tier": 2,
+  "description": "Log aggregation backend. Receives workload logs from the platform via gRPC and stores them in Grafana Loki.",
+  "longDescription": "Deploys a gRPC wrapper alongside a Loki container. The platform forwards workload log entries via IngestLog gRPC calls; the wrapper writes them to Loki using the Loki push API.\n\nExposes a LogQL-compatible query endpoint at http://loki:3100 for Grafana and other visualizers.",
+  "tags": ["observability", "logs", "loki", "grafana", "logging"],
+  "capabilities": ["monitoring.logs"],
+  "author": "Kleff",
+  "repo": "https://github.com/kleffio/plugins/loki-plugin",
+  "image": "ghcr.io/kleffio/loki-plugin",
+  "version": "0.1.0",
+  "license": "MIT",
+  "verified": true,
+  "output": {
+    "protocol": "loki_push",
+    "path": "/loki/api/v1/push"
+  },
+  "companions": [
+    {
+      "id": "loki",
+      "image": "grafana/loki:3.0.0",
+      "command": ["-config.file=/etc/loki/local-config.yaml"],
+      "ports": [{ "container": 3100, "host": 3100 }],
+      "volumes": [{ "name": "kleff-loki-data", "target": "/loki" }],
+      "internalAddr": "http://loki:3100",
+      "skipIfEnv": "LOKI_URL"
+    }
+  ],
+  "config": [
+    {
+      "key": "LOKI_URL",
+      "label": "Loki URL",
+      "description": "Override to use an external Loki instance. Leave blank to use the bundled companion.",
+      "type": "url",
+      "required": false,
+      "advanced": true
+    }
+  ]
+}
