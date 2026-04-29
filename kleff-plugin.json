@@ -17,6 +17,10 @@
     "protocol": "loki_push",
     "path": "/loki/api/v1/push"
   },
+  "query": {
+    "url": "http://kleff-loki-plugin:8080",
+    "path": "/logs"
+  },
   "companions": [
     {
       "id": "loki",
