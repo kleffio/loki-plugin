@@ -3,7 +3,7 @@ module github.com/kleffio/loki-plugin
 go 1.25.0
 
 require (
-	github.com/kleffio/plugin-sdk-go v0.1.6
+	github.com/kleffio/plugin-sdk-go v0.1.8
 	google.golang.org/grpc v1.64.0
 )
 
@@ -14,5 +14,3 @@ require (
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240617180043-68d350f18fd4 // indirect
 	google.golang.org/protobuf v1.34.2 // indirect
 )
-
-replace github.com/kleffio/plugin-sdk-go => ../plugin-sdk-go
