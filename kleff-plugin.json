@@ -9,7 +9,7 @@
   "capabilities": ["monitoring.logs"],
   "author": "Kleff",
   "repo": "https://github.com/kleffio/plugins/loki-plugin",
-  "image": "ghcr.io/kleffio/loki-plugin",
+  "image": "ghcr.io/kleffio/logs-loki",
   "version": "0.1.0",
   "license": "MIT",
   "verified": true,
